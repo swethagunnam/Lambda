@@ -1,6 +1,6 @@
 pipeline {
     agent any
-
+  
     stages {
         stage('Setup') {
             steps {
@@ -19,7 +19,7 @@ pipeline {
         }
         stage('Deploy') {
             environment {
-                //names should accroding to the documentation i.e, AWS_ACCESS_KEY_ID
+                //names should according to the documentation i.e, AWS_ACCESS_KEY_ID
                 AWS_ACCESS_KEY_ID = credentials('aws-access-key')
                 AWS_SECRET_ACCESS_KEY = credentials('aws-secret-key')
             }
