@@ -3,7 +3,7 @@ pipeline {
     
     environment {
         PATH = "$PATH:/var/lib/jenkins/.local/bin"
-        AWS_SAM_STACK_NAME = 'Jenkins-Lambda'
+        AWS_SAM_STACK_NAME = "Jenkins-Lambda"
     }
     stages {
         stage('Setup') {
@@ -13,6 +13,7 @@ pipeline {
         }
         stage('Test') {
             steps {
+                sh 'echo "AWS_SAM_STACK_NAME: $AWS_SAM_STACK_NAME"'
                 sh "pytest"
             }
         }
