@@ -4,6 +4,7 @@ pipeline {
     environment {
         PATH = "$PATH:/var/lib/jenkins/.local/bin"
         AWS_SAM_STACK_NAME = "Jenkins-Lambda"
+        AWS_REGION = 'us-east-1' 
     }
     stages {
         stage('Setup') {
