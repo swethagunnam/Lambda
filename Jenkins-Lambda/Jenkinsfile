@@ -1,0 +1,31 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Setup') {
+            steps {
+                sh "pip3 install -r Jenkins-Lambda/tests/requirements.txt"
+            }
+        }
+        stage('Test') {
+            steps {
+                sh "pytest"
+            }
+        }
+        stage('Build') {
+            steps {
+                sh "sam build -t Jenkins-Lambda/template.yaml"
+            }
+        }
+        stage('Deploy') {
+            environment {
+                //names should accroding to the documentation i.e, AWS_ACCESS_KEY_ID
+                AWS_ACCESS_KEY_ID = credentials('aws-access-key')
+                AWS_SECRET_ACCESS_KEY = credentials('aws-secret-key')
+            }
+            steps{
+                sh "sam deploy -t Jenkins-Lambda/template.yaml --no-confirm-changeset --no-fail-on-empty-changeset"
+            }
+        }
+    }
+}
