@@ -17,6 +17,7 @@ pipeline {
                 sh "sam build -t Jenkins-Lambda/template.yaml"
             }
         }
+        //Deploy needs credentials of AWS, which are stored in Jenkin credentials
         stage('Deploy') {
             environment {
                 //names should according to the documentation i.e, AWS_ACCESS_KEY_ID
