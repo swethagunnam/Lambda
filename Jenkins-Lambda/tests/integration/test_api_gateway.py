@@ -19,7 +19,8 @@ class TestApiGateway:
         if stack_name is None:
             raise ValueError('Please set the AWS_SAM_STACK_NAME environment variable to the name of your stack')
 
-        client = boto3.client("cloudformation")
+        region = os.environ.get("AWS_REGION", "us-east-1")
+        client = boto3.client("cloudformation", region_name=region)
 
         try:
             response = client.describe_stacks(StackName=stack_name)
