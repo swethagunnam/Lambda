@@ -19,6 +19,7 @@ pipeline {
         }
         stage('Build') {
             steps {
+                sh 'echo $PATH'
                 sh "sam build -t Jenkins-Lambda/template.yaml"
             }
         }
