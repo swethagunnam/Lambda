@@ -13,7 +13,6 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh 'echo "AWS_SAM_STACK_NAME: $AWS_SAM_STACK_NAME"'
                 sh "pytest"
             }
         }
