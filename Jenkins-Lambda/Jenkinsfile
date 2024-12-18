@@ -19,10 +19,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh "echo abc"
-                sh 'echo $PATH'
-                sh "echo abc1"
-                sh "/var/lib/jenkins/.local/bin/sam build -t Jenkins-Lambda/template.yaml"
+                sh "sam build -t Jenkins-Lambda/template.yaml"
             }
         }
         //Deploy needs credentials of AWS, which are stored in Jenkin credentials
